@@ -5,7 +5,7 @@ const app       = express();
 const session   = require('express-session');
 const connectDB = require('./config/database');
 const PORT      = process.env.APP_PORT || 3000;
-const security = require('./src/Middleware/Security');
+const security  = require('./src/Middleware/Security');
 
 connectDB();
 

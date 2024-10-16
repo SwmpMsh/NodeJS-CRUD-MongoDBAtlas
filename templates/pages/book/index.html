@@ -19,7 +19,7 @@
     <tbody>
         <% for (let i = 0; i < books.length; i++) { %>
         <tr>
-            <td><a href="/book/<%= books[i].id %>"><%= books[i].title %></a></td>
+            <td><a href="/book/<%= books[i]._id %>"><%= books[i].title %></a></td>
             <td><%= books[i].description %></td>
             <td><%= books[i].price %>&euro;</td>
         </tr>

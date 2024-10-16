@@ -1,6 +1,7 @@
 const Book = require('./../Models/Book');
 const { validationResult } = require('express-validator');
 
+
 /**
  * Books Index
  * Display the list of books
@@ -145,9 +146,13 @@ exports.delete = async (req, res) => {
             errors: [{ msg: "Book not found." }],
         });
     }
-    if (req.method === 'POST') {
 
+    if (req.method === 'POST' && req.body._method === 'DELETE') {
+        await Book.deleteOne({ _id: id });
+        return res.redirect(`/books`);
     }
 
-    res.render('pages/book/delete')
+    res.render('pages/book/delete', {
+        book: book
+    })
 }
