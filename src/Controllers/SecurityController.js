@@ -26,7 +26,7 @@ exports.registration = async (req, res) => {
         const user = await User.findOne({ email });
 
         if (user) {
-            return res.render('pages/register/index', {
+            return res.render('pages/security/register', {
                 errors: [{ msg: "L'utilisateur existe déjà" }],
                 username: username,
                 email: email,
@@ -78,12 +78,12 @@ exports.authentication = async (req, res) => {
 
         // is User don't exists ?
         if (!user) {
-            errors.push({ msg: "Invalid credentials (1)" });
+            errors.push({ msg: "Invalid credentials" });
         } else {
             // Check user password
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
-                errors.push({ msg: "Invalid credentials (2)" });
+                errors.push({ msg: "Invalid credentials" });
             } 
         }
 

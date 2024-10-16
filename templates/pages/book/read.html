@@ -18,6 +18,14 @@
 </table>
 
 <% if (isLogged) { %>
+    <button 
+        class="btn btn-danger" 
+        rel="js-delete"
+        data-id="<%= book._id %>"
+        data-title="<%= book.title %>"
+    >Delete book (alternative)</button>
+
+
     <a class="btn btn-danger" href="/book/<%= book.id %>/delete">Delete book</a>
     <a class="btn btn-primary" href="/book/<%= book.id %>/edit">Edit book</a>
 <% } %>
