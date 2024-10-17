@@ -23,7 +23,7 @@ exports.registration = async (req, res) => {
 
     if (req.method === 'POST' && errors.isEmpty()) {
 
-        const user = await User.findOne({ email });
+        let user = await User.findOne({ email });
 
         if (user) {
             return res.render('pages/security/register', {
@@ -40,7 +40,7 @@ exports.registration = async (req, res) => {
         });
         await user.save();
 
-        res.redirect('/login');
+        return res.redirect('/login');
     }
 
     res.render('pages/security/register', {
