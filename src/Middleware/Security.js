@@ -9,7 +9,7 @@
  */
 exports.isGranted = (req, res, next) => {
     if (req.session.user) {
-         next();return
+        next();return
     }
     res.redirect('/login');
 };

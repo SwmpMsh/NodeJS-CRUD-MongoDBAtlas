@@ -23,10 +23,10 @@ exports.registration = async (req, res) => {
 
     if (req.method === 'POST' && errors.isEmpty()) {
 
-        const user = await User.findOne({ email });
+        let user = await User.findOne({ email });
 
         if (user) {
-            return res.render('pages/register/index', {
+            return res.render('pages/security/register', {
                 errors: [{ msg: "L'utilisateur existe déjà" }],
                 username: username,
                 email: email,
@@ -40,7 +40,7 @@ exports.registration = async (req, res) => {
         });
         await user.save();
 
-        res.redirect('/login');
+        return res.redirect('/login');
     }
 
     res.render('pages/security/register', {
@@ -78,12 +78,12 @@ exports.authentication = async (req, res) => {
 
         // is User don't exists ?
         if (!user) {
-            errors.push({ msg: "Invalid credentials (1)" });
+            errors.push({ msg: "Invalid credentials" });
         } else {
             // Check user password
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
-                errors.push({ msg: "Invalid credentials (2)" });
+                errors.push({ msg: "Invalid credentials" });
             } 
         }
 

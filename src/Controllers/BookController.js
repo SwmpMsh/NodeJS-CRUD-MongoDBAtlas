@@ -50,7 +50,7 @@ exports.create = async (req, res) => {
 
         await book.save();
 
-        res.redirect(`/book/${book.id}`);
+        return res.redirect(`/book/${book.id}`);
     }
 
     res.render('pages/book/create', {
